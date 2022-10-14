@@ -1,0 +1,17 @@
+<div class="align-items-center justify-content-center">
+  <%= form_with model: @book, url: forwardPass do |form| %>
+    <p class="my-3">
+      <%= form.label :title, "Book Title" , class: "fs-4" %> 
+      <%= form.text_field :title , class: "form-control" %>
+    </p>
+    <p class="my-3">
+      <%= form.label :author, "Author Name" , class: "fs-4" %> 
+      <%= form.text_field :author , class: "form-control" %>
+    </p>
+
+    <div class="my-3">
+      <%= form.submit btnTitle , class:"btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>
