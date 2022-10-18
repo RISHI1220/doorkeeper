@@ -2,7 +2,8 @@
 
 module Api
   module V1
-    class ApisController < ApplicationController
+    class ApisController < ActionController::API
+      before_action :doorkeeper_authorize!
       def index
         render json: Book.all
       end
@@ -30,6 +31,9 @@ module Api
 
       def book_params
         params.permit(:title, :author)
+      end
+      def current_user
+        @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id])
       end
     end
   end

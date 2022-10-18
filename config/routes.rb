@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  use_doorkeeper do
+    skip_controllers :authorizations, :applications, :authorized_applications
+  end
+  
   devise_for :users
   # Defines the root path route ("/")
   resources :books
@@ -32,6 +36,8 @@ Rails.application.routes.draw do
       delete 'delete/:id', to: 'apis#destroy'
       # Delete record using query or body paramter
       delete 'delete', to: 'apis#destroy'
+
+      resources :users, only: %i[create]
     end
   end
 end
